@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azwa Luwu — Portofolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: #07070d;
+      color: #e2e8f0;
+      line-height: 1.7;
+    }
+    a { color: #60a5fa; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { max-width: 100%; display: block; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+    /* ─── Futuristic Grid Overlay ─── */
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    /* ─── Header ─── */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(139,92,246,0.08) 0%, transparent 60%),
+        #07070d;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 0;
+    }
+    /* Glowing orbs */
+    header::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%);
+      top: -100px;
+      left: -100px;
+      animation: floatOrb 12s ease-in-out infinite;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.05) 0%, transparent 70%);
+      bottom: -80px;
+      right: -80px;
+      animation: floatOrb 15s ease-in-out infinite reverse;
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(30px, -20px) scale(1.05); }
+      66% { transform: translate(-20px, 15px) scale(0.95); }
+    }
+
+    /* ─── Photo Frame ─── */
+    .photo-wrapper {
+      position: relative;
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 28px;
+      z-index: 1;
+    }
+    .photo-ring {
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+      animation: spinRing 4s linear infinite;
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 2px));
+    }
+    .photo-ring-pulse {
+      position: absolute;
+      inset: -12px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, transparent, rgba(59,130,246,0.15), transparent, rgba(139,92,246,0.1), transparent);
+      animation: spinRing 6s linear infinite reverse;
+      -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff calc(100% - 7px));
+      mask: radial-gradient(farthest-side, transparent calc(100% - 8px), #fff calc(100% - 7px));
+    }
+    .photo-ring-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%);
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+    @keyframes spinRing { to { transform: rotate(360deg); } }
+    @keyframes pulseGlow {
+      0%, 100% { opacity: 0.5; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+    .photo-frame {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 0 40px rgba(59,130,246,0.2);
+    }
+    .photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #f1f5f9 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+      z-index: 1;
+      position: relative;
+    }
+    header .location {
+      font-size: 1rem;
+      color: #64748b;
+      margin-bottom: 28px;
+      z-index: 1;
+      position: relative;
+    }
+    header .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 0.88rem;
+      z-index: 1;
+      position: relative;
+    }
+    header .contact-links a {
+      color: #e2e8f0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: 0.25s;
+    }
+    header .contact-links a:hover {
+      background: rgba(59,130,246,0.15);
+      border-color: rgba(59,130,246,0.4);
+      box-shadow: 0 0 20px rgba(59,130,246,0.15);
+      text-decoration: none;
+    }
+
+    /* ─── Scroll indicator ─── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: #475569;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+    .scroll-indicator .arrow {
+      width: 18px;
+      height: 18px;
+      border-right: 2px solid #475569;
+      border-bottom: 2px solid #475569;
+      transform: rotate(45deg);
+    }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ─── Sections ─── */
+    section { padding: 64px 0; }
+    .section-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f1f5f9;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(59,130,246,0.3), transparent);
+    }
+    .section-title .accent {
+      color: #3b82f6;
+    }
+
+    /* ─── Summary ─── */
+    .summary-text {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 800px;
+      line-height: 1.8;
+    }
+    .summary-text strong {
+      color: #e2e8f0;
+    }
+
+    /* ─── Skills ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-cat {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 22px;
+      transition: 0.25s;
+    }
+    .skill-cat:hover {
+      border-color: rgba(59,130,246,0.25);
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 0 30px rgba(59,130,246,0.05);
+    }
+    .skill-cat h3 {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #3b82f6;
+      margin-bottom: 10px;
+    }
+    .skill-cat p {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      line-height: 1.6;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .skill-tag {
+      background: rgba(59,130,246,0.1);
+      color: #93c5fd;
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(59,130,246,0.12);
+    }
+
+    /* ─── Experience ─── */
+    .exp-item {
+      margin-bottom: 36px;
+      padding: 28px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
+      transition: 0.25s;
+    }
+    .exp-item:hover {
+      border-color: rgba(59,130,246,0.2);
+      box-shadow: 0 0 30px rgba(59,130,246,0.03);
+    }
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .exp-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #f1f5f9;
+    }
+    .exp-header .exp-date {
+      font-size: 0.82rem;
+      color: #64748b;
+      font-family: 'Inter', monospace;
+    }
+    .exp-sub {
+      font-size: 0.88rem;
+      color: #3b82f6;
+      margin-bottom: 14px;
+    }
+    .exp-item ul {
+      list-style: none;
+      padding: 0;
+    }
+    .exp-item ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 5px;
+      font-size: 0.9rem;
+      color: #94a3b8;
+    }
+    .exp-item ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: #3b82f6;
+    }
+    .exp-item ul li strong {
+      color: #e2e8f0;
+    }
+    .work-ethic {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: rgba(59,130,246,0.05);
+      border-left: 2px solid #3b82f6;
+      border-radius: 0 10px 10px 0;
+      font-size: 0.88rem;
+      color: #93c5fd;
+    }
+
+    /* ─── Projects ─── */
+    .project-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 28px;
+      margin-bottom: 24px;
+      transition: 0.3s;
+    }
+    .project-card:hover {
+      border-color: rgba(6,182,212,0.3);
+      background: rgba(255,255,255,0.04);
+      box-shadow: 0 0 40px rgba(6,182,212,0.05);
+    }
+    .project-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 2px;
+    }
+    .project-card .project-sub {
+      font-size: 0.82rem;
+      color: #06b6d4;
+      margin-bottom: 12px;
+    }
+    .project-card .project-desc {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-bottom: 12px;
+    }
+    .project-card ul {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 12px;
+    }
+    .project-card ul li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 4px;
+      font-size: 0.86rem;
+      color: #94a3b8;
+    }
+    .project-card ul li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: #06b6d4;
+    }
+    .project-card ul li strong {
+      color: #e2e8f0;
+    }
+    .project-card .tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .project-card .tech-stack span {
+      background: rgba(6,182,212,0.08);
+      color: #67e8f9;
+      font-size: 0.76rem;
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(6,182,212,0.12);
+    }
+    .project-card .project-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: #06b6d4;
+    }
+    .project-card .project-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ─── Education & Certs ─── */
+    .edu-item {
+      margin-bottom: 16px;
+      padding: 18px 22px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+    }
+    .edu-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+    .edu-item .edu-detail {
+      font-size: 0.88rem;
+      color: #64748b;
+    }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .cert-item {
+      display: flex;
+      flex-direction: column;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: 0.25s;
+      text-decoration: none;
+    }
+    .cert-item:hover {
+      border-color: rgba(139,92,246,0.3);
+      box-shadow: 0 0 25px rgba(139,92,246,0.1);
+      transform: translateY(-3px);
+      text-decoration: none;
+    }
+    .cert-thumb {
+      width: 100%;
+      aspect-ratio: 1.4 / 1;
+      object-fit: cover;
+      display: block;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .cert-body {
+      padding: 12px 14px 14px;
+      text-align: center;
+    }
+    .cert-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      display: block;
+    }
+    .cert-source {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 2px;
+      display: block;
+    }
+
+    /* ─── Additional ─── */
+    .extra-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 640px) { .extra-grid { grid-template-columns: 1fr; } }
+    .extra-item {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: #94a3b8;
+      transition: 0.2s;
+    }
+    .extra-item:hover {
+      border-color: rgba(59,130,246,0.2);
+      background: rgba(255,255,255,0.04);
+    }
+    .extra-item .icon {
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(59,130,246,0.08);
+      border-radius: 8px;
+    }
+    .extra-item strong {
+      display: block;
+      font-weight: 600;
+      color: #e2e8f0;
+      margin-bottom: 1px;
+    }
+
+    /* ─── Footer ─── */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      font-size: 0.82rem;
+      color: #475569;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    footer a { color: #64748b; }
+    footer a:hover { color: #60a5fa; }
+
+    /* ─── Nav dots ─── */
+    .nav-dots {
+      position: fixed;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 100;
+    }
+    .nav-dots a {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.15);
+      transition: 0.2s;
+    }
+    .nav-dots a:hover { background: #3b82f6; box-shadow: 0 0 10px rgba(59,130,246,0.4); }
+
+    /* ─── Print ─── */
+    @media print {
+      .nav-dots, .scroll-indicator, .grid-bg { display: none !important; }
+      header { min-height: auto; padding: 40px 0; }
+      section { padding: 24px 0; page-break-inside: avoid; }
+      .project-card:hover, .exp-item:hover, .skill-cat:hover, .extra-item:hover { box-shadow: none; }
+      body { background: #fff; color: #000; }
+      header h1 { -webkit-text-fill-color: #000; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-bg"></div>
+
+<!-- ═══ HEADER ═══ -->
+<header>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="photo-wrapper">
+      <div class="photo-ring-glow"></div>
+      <div class="photo-ring-pulse"></div>
+      <div class="photo-ring"></div>
+      <div class="photo-frame">
+        <img src="profile-photo.png" alt="Azwa Luwu" />
+      </div>
+    </div>
+
+    <h1>Azwa Luwu</h1>
+    <div class="location">Padang, Sumatera Barat, Indonesia</div>
+
+    <div class="contact-links">
+      <a href="mailto:azafi101@gmail.com">✉️ Email</a>
+      <a href="tel:+6283809714022">📞 0838 - 0971 - 4022</a>
+      <a href="https://linkedin.com/in/azwa-luwu-4849033a3/" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com/AZWALUWU" target="_blank">🐙 GitHub</a>
+      <a href="https://agendaprestasi.web.id" target="_blank">🌐 Agenda Prestasi</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    scroll
+    <div class="arrow"></div>
+  </div>
+</header>
+
+<!-- ═══ RINGKASAN ═══ -->
+<section>
+  <div class="container">
+    <h2 class="section-title"><span class="accent">//</span> Ringkasan Profesional</h2>
+    <p class="summary-text">
+      Profesional IT dengan pengalaman 4+ tahun dalam infrastruktur jaringan, administrasi sistem, dan operasional IT.
+      Memiliki fondasi kuat di bidang hardware (krimping RJ45, terminasi fiber optik, deployment OLT) dan software
+      (administrasi Linux/Windows, Bash scripting, troubleshooting sistem). Linux (Pop OS, Xubuntu) sebagai daily driver;
+      mengenal Windows sejak SD. Berpengalaman dalam arsitektur sistem untuk aplikasi serverless production — termasuk
+      pemodelan database, strategi caching, dan kontrol akses berbasis peran.
+      <br/><br/>
+      <strong>Etos kerja:</strong> Kerjakan semua yang bisa dikerjakan hari itu sampai selesai, pekerjaan adalah utama.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ KOMPETENSI ═══ -->
+<section>
+  <div class="container">
+    <h2 class="section-title"><span class="accent">//</span> Kompetensi Inti</h2>
+    <div class="skills-grid">
+      <div class="skill-cat">
+        <h3>Jaringan & Infrastruktur</h3>
+        <p>MikroTik RouterOS, PPPoE Server, VLAN, OLT/ONT, FTTH, Fiber Optic Termination, RJ45 Crimping, Routing & NAT, Firewall, Bandwidth Management, Monitoring Jaringan</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Linux Server</span>
+          <span class="skill-tag">Bash Scripting</span>
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">WinBox</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Cloud & DevOps</h3>
+        <p>Cloudflare Workers, Supabase (PostgreSQL, RLS, Auth), AWS (EC2, S3, VPC, IAM), Docker, Terraform, GitHub Actions, CI/CD</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">Grafana</span>
+          <span class="skill-tag">Prometheus</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>System Design & Pemrograman</h3>
+        <p>Arsitektur Serverless, Strategi Caching Edge, Pemodelan Database, Desain RBAC, Arsitektur Keamanan</p>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML</span>
+          <span class="skill-tag">CSS</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+      <div class="skill-cat">
+        <h3>Tools & OS</h3>
+        <p>Linux (Pop OS, Xubuntu — daily driver), Windows (sejak SD)</p>
+        <div class="skill-tags">
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">Wireshark</span>
+          <span class="skill-tag">WinBox</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PENGALAMAN ═══ -->
+<section>
+  <div class="container">
+    <h2 class="section-title"><span class="accent">//</span> Pengalaman Profesional</h2>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <h3>Network &amp; Infrastructure Engineer</h3>
+        <span class="exp-date">Feb 2022 – Sekarang</span>
+      </div>
+      <div class="exp-sub">Self Employed · Freelance — Sumatera Barat</div>
+      <ul>
+        <li><strong>Hardware & kabel:</strong> Membuat dan men-terminasi kabel Ethernet RJ45, menerapkan koneksi fiber optik (OLT/ONT), merawat infrastruktur jaringan fisik end-to-end</li>
+        <li>Merancang dan merawat topologi jaringan untuk ISP dan RT/RW Net yang melayani banyak pelanggan</li>
+        <li>Mengonfigurasi MikroTik RouterOS: dynamic routing, firewall, NAT, bandwidth shaping, PPPoE server, VLAN segmentation</li>
+        <li>Menerapkan dan mengelola perangkat OLT/ONT untuk konektivitas fiber-to-the-home</li>
+        <li>Membangun sistem monitoring jaringan untuk visibilitas uptime dan deteksi insiden</li>
+        <li>Mengelola server Linux untuk layanan jaringan, autentikasi pelanggan, dan sistem billing</li>
+        <li>Menulis skrip Bash untuk otomatisasi operasi rutin, analisis log, dan backup</li>
+      </ul>
+      <div class="work-ethic">
+        <strong>Etos kerja:</strong> Menyelesaikan tugas harian hingga tuntas — gangguan jaringan, instalasi baru, dan permintaan klien diselesaikan di hari yang sama. Mengutamakan stabilitas operasional dan kepuasan pelanggan.
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-header">
+        <h3>Data Analyst Intern</h3>
+        <span class="exp-date">Agu 2024 – Jan 2025</span>
+      </div>
+      <div class="exp-sub">PT. Global One Solusindo</div>
+      <ul>
+        <li>Melakukan pembersihan dan validasi data pada dataset operasional</li>
+        <li>Menghasilkan laporan performa bisnis mingguan untuk tinjauan manajemen</li>
+        <li>Menulis query SQL untuk ekstraksi dan agregasi data</li>
+      </ul>
+      <div class="work-ethic">
+        <strong>Etos kerja:</strong> Memastikan semua laporan mingguan selesai dan dikirim tepat waktu. Bertanggung jawab penuh atas akurasi data — cross-check angka sebelum submit.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROYEK ═══ -->
+<section>
+  <div class="container">
+    <h2 class="section-title"><span class="accent">//</span> Proyek</h2>
+
+    <div class="project-card">
+      <h3>Agenda Prestasi — Platform SaaS Serverless</h3>
+      <div class="project-sub">System Design, Cloud Architecture, Database Modeling</div>
+      <p class="project-desc">
+        Platform pencarian beasiswa, kompetisi, dan event untuk pelajar Indonesia.
+        <em>(Dikembangkan dengan bantuan AI — saya memegang penuh system design dan arsitektur.)</em>
+      </p>
+      <ul>
+        <li><strong>Merancang</strong> arsitektur serverless di Cloudflare Workers dengan edge caching (KV) dan React SSR via TanStack Start</li>
+        <li><strong>Mendesain</strong> skema PostgreSQL dengan Row-Level Security untuk posts, bookmarks, dan user roles</li>
+        <li><strong>Mendesain</strong> strategi caching multi-layer (KV cache 5 menit, cache-bypass untuk search/filter)</li>
+        <li><strong>Mendesain</strong> model auth dua lapis: RLS database + permission helpers dengan hierarki public/admin/super_admin</li>
+        <li><strong>Mengimplementasikan</strong> rate limiting (60 req/menit/IP), sanitasi HTML, dan arsitektur keamanan</li>
+        <li><strong>Menerapkan dan merawat</strong> SaaS production live yang melayani pelajar Indonesia</li>
+      </ul>
+      <p style="font-size:0.86rem;color:#64748b;font-style:italic;margin-bottom:10px;">
+        Mencakup: content management system, halaman publik dengan SEO/PWA, admin dashboard dengan CRUD + analytics.
+      </p>
+      <div class="tech-stack">
+        <span>Cloudflare Workers</span>
+        <span>TanStack Start</span>
+        <span>React 19</span>
+        <span>Supabase</span>
+        <span>PostgreSQL</span>
+        <span>Cloudflare KV</span>
+        <span>Sentry</span>
+        <span>PostHog</span>
+        <span>Tailwind CSS</span>
+      </div>
+      <a class="project-link" href="https://agendaprestasi.web.id" target="_blank">🔗 Kunjungi situs →</a>
+    </div>
+
+    <div class="project-card">
+      <h3>Cloud Engineering Roadmap — 70 Proyek Hands-On</h3>
+      <div class="project-sub">Mandiri · Portofolio Publik</div>
+      <p class="project-desc">
+        Kurikulum hands-on terstruktur — 70 proyek cloud engineering dibangun dari nol, didokumentasikan dengan diagram arsitektur, dan dipublikasikan di GitHub.
+      </p>
+      <ul>
+        <li>Administrasi Linux, AWS, Docker, Kubernetes, Terraform, CI/CD, Prometheus/Grafana, cloud security</li>
+        <li>Setiap proyek menyertakan diagram arsitektur dan konfigurasi siap produksi</li>
+        <li>Dibangun dengan metodologi dokumentasi-first</li>
+      </ul>
+      <a class="project-link" href="https://github.com/AZWALUWU" target="_blank">🐙 Lihat di GitHub →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PENDIDIKAN & SERTIFIKASI ═══ -->
+<section>
+  <div class="container">
+    <h2 class="section-title"><span class="accent">//</span> Pendidikan &amp; Sertifikasi</h2>
+
+    <div class="edu-item">
+      <h3>SMKN 1 Sawahlunto</h3>
+      <div class="edu-detail">Teknik Komputer dan Jaringan (TKJ)</div>
+    </div>
+    <div class="edu-item">
+      <h3>Dicoding</h3>
+      <div class="edu-detail">Kursus mandiri — JavaScript, Python, SQL</div>
+    </div>
+
+    <div class="certs-grid">
+      <a class="cert-item" href="certs/cloud-practitioner-essential.pdf" target="_blank">
+        <img class="cert-thumb" src="certs/thumbs/cloud-practitioner-essential.png" alt="Cloud Practitioner Essential" loading="lazy" />
+        <span class="cert-body">
+          <span class="cert-name">Cloud Practitioner Essential</span>
+          <span class="cert-source">Dicoding</span>
+        </span>
+      </a>
+      <a class="cert-item" href="certs/basic-networking.pdf" target="_blank">
+        <img class="cert-thumb" src="certs/thumbs/basic-networking.png" alt="Basic Networking" loading="lazy" />
+        <span class="cert-body">
+          <span class="cert-name">Basic Networking</span>
+          <span class="cert-source">Dicoding</span>
+        </span>
+      </a>
+      <a class="cert-item" href="certs/dasar-javascript.pdf" target="_blank">
+        <img class="cert-thumb" src="certs/thumbs/dasar-javascript.png" alt="Dasar JavaScript" loading="lazy" />
+        <span class="cert-body">
+          <span class="cert-name">Dasar JavaScript</span>
+          <span class="cert-source">Dicoding</span>
+        </span>
+      </a>
+      <a class="cert-item" href="certs/python-dasar.pdf" target="_blank">
+        <img class="cert-thumb" src="certs/thumbs/python-dasar.png" alt="Python Dasar" loading="lazy" />
+        <span class="cert-body">
+          <span class="cert-name">Python Dasar</span>
+          <span class="cert-source">Dicoding</span>
+        </span>
+      </a>
+      <a class="cert-item" href="certs/git-github.pdf" target="_blank">
+        <img class="cert-thumb" src="certs/thumbs/git-github.png" alt="Git &amp; GitHub" loading="lazy" />
+        <span class="cert-body">
+          <span class="cert-name">Git &amp; GitHub</span>
+          <span class="cert-source">Dicoding</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TAMBAHAN ═══ -->
+<section>
+  <div class="container">
+    <h2 class="section-title"><span class="accent">//</span> Informasi Tambahan</h2>
+    <div class="extra-grid">
+      <div class="extra-item">
+        <span class="icon">🐧</span>
+        <div><strong>Linux Daily Driver</strong>Pop OS & Xubuntu sejak 2023 — terminal workflow, custom dotfiles</div>
+      </div>
+      <div class="extra-item">
+        <span class="icon">🪟</span>
+        <div><strong>Windows</strong>Pengalaman sejak SD (warnet) — familiar dengan administrasi Windows</div>
+      </div>
+      <div class="extra-item">
+        <span class="icon">🔌</span>
+        <div><strong>Kabel Fisik</strong>RJ45 crimping & terminasi fiber optik — pengalaman langsung di lapangan</div>
+      </div>
+      <div class="extra-item">
+        <span class="icon">🏆</span>
+        <div><strong>LKS Sysadmin</strong>Peserta Lomba Kompetensi Siswa — troubleshooting Linux di bawah tekanan</div>
+      </div>
+      <div class="extra-item">
+        <span class="icon">⌨️</span>
+        <div><strong>63 WPM</strong>Kecepatan mengetik rata-rata</div>
+      </div>
+      <div class="extra-item">
+        <span class="icon">🧠</span>
+        <div><strong>Problem Solving</strong>Sistematis — identifikasi akar masalah, isolasi variabel, uji solusi bertahap</div>
+      </div>
+      <div class="extra-item">
+        <span class="icon">🌍</span>
+        <div><strong>Bahasa</strong>Indonesia (Native) · Inggris (Professional Working)</div>
+      </div>
+      <div class="extra-item">
+        <span class="icon">⚡</span>
+        <div><strong>Etos Kerja</strong>Kerjakan semua yang bisa dikerjakan hari itu sampai selesai. Pekerjaan adalah utama.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="container">
+    <p>© 2026 Azwa Luwu</p>
+    <p style="margin-top:4px;">
+      <a href="mailto:azafi101@gmail.com">Email</a> ·
+      <a href="https://linkedin.com/in/azwa-luwu-4849033a3/" target="_blank">LinkedIn</a> ·
+      <a href="https://github.com/AZWALUWU" target="_blank">GitHub</a>
+    </p>
+  </div>
+</footer>
+
+<!-- ─── Nav dots ─── -->
+<nav class="nav-dots" aria-label="Navigasi cepat">
+  <a href="#ringkasan" title="Ringkasan"></a>
+  <a href="#kompetensi" title="Kompetensi"></a>
+  <a href="#pengalaman" title="Pengalaman"></a>
+  <a href="#proyek" title="Proyek"></a>
+  <a href="#pendidikan" title="Pendidikan"></a>
+  <a href="#tambahan" title="Tambahan"></a>
+</nav>
+
+</body>
+</html>
